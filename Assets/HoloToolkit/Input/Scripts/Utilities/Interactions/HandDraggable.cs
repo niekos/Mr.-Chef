@@ -306,7 +306,7 @@ namespace HoloToolkit.Unity.InputModule
             StoppedDragging.RaiseEvent();
         }
 
-        public void OnFocusEnter()
+        public virtual void OnFocusEnter()
         {
             if (!IsDraggingEnabled)
             {
@@ -321,7 +321,7 @@ namespace HoloToolkit.Unity.InputModule
             isGazed = true;
         }
 
-        public void OnFocusExit()
+        public virtual void OnFocusExit()
         {
             if (!IsDraggingEnabled)
             {

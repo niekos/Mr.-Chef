@@ -14,6 +14,6 @@ public class Check : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //int index = (int)((Time.time * framesPerSecond) % frames.Length);
-        GetComponent<Renderer>().material.mainTexture = frame[index];
+        //GetComponent<Renderer>().material.mainTexture = frame[index];
     }
 }
