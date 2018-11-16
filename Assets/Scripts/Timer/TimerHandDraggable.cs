@@ -26,6 +26,7 @@ namespace Assets.Scripts.Timer {
 
             Debug.Log("Timer is focussed on!");
             material.color = highlightedColor;
+            //textMesh.text = "Focussed";
         }
 
         public override void OnFocusExit() {
@@ -33,6 +34,8 @@ namespace Assets.Scripts.Timer {
 
             Debug.Log("Timer is exited!");
             material.color = primaryColor;
+
+            //textMesh.text = "Idle";
         }
 
         private void onDestroy() {
