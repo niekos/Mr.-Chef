@@ -23,24 +23,19 @@ public class VoiceRecognizer : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
     
-    public void BeginListening () {
-        Debug.Log("Voice begins....");
-
+    private void BeginListening () {
         KeywordRecognizer.Start();
     }
 
-    public void CreateKeywordRecognizer()
+    private void CreateKeywordRecognizer()
     {
         KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+        BeginListening();
     }
 
     public void RegisterKeyword(string keyword)
     {
         keywords.Add(keyword, () => { });
-    }
-
-    public void Update()
-    {
-        
+        CreateKeywordRecognizer();
     }
 }
