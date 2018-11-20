@@ -62,7 +62,9 @@ public class RecipeInstruction : MonoBehaviour {
             {
                 var component = child.GetComponent<Renderer>();
                 component.gameObject.SetActive(active);
-                component.GetComponent<Animator>().SetBool("PlayCheck", false);
+
+                var animator = component.GetComponent<Animator>();
+                animator.SetBool("PlayCheck", true);
             }
         }
     }
@@ -85,7 +87,9 @@ public class RecipeInstruction : MonoBehaviour {
             {
                 if (child.transform.name == "StepText")
                 {
-                    child.GetComponent<Renderer>().gameObject.GetComponent<TextMesh>().text = instruction;
+                    var component = child.GetComponent<Renderer>().gameObject.GetComponent<TextMesh>();
+                    component.text = instruction;
+                    component.gameObject.SetActive(true);
                 }
             }
 
