@@ -566,10 +566,12 @@
     <Compile Include="Assets\HoloToolkit\UX\Scripts\UICollection.cs" />
     <Compile Include="Assets\HoloToolkit\UX\Scripts\UsabilityScaler.cs" />
     <Compile Include="Assets\HoloToolkit\UX\Scripts\UsabilityUtilities.cs" />
+    <Compile Include="Assets\Scripts\Timer\OpenTimerDetail.cs" />
     <Compile Include="Assets\Scripts\StepByStepMenu\Check.cs" />
     <Compile Include="Assets\Scripts\StepByStepMenu\RecipeInstruction.cs" />
     <Compile Include="Assets\Scripts\StepByStepMenu\StepText.cs" />
     <Compile Include="Assets\Scripts\Timer\Counter.cs" />
+    <Compile Include="Assets\Scripts\Timer\NewTimerClick.cs" />
     <Compile Include="Assets\Scripts\Timer\TimerHandDraggable.cs" />
     <Compile Include="Assets\Scripts\Timer\TimerManager.cs" />
     <Compile Include="Assets\Scripts\VoiceRecognizer.cs" />

@@ -8,54 +8,44 @@ using UnityEngine;
 namespace Assets.Scripts.Timer {
 
     class Counter : MonoBehaviour {
-
-        public System.Timers.Timer timer;
-        private TextMesh textMesh;
-
-        public int time;
-        public int hh;
-        public int mm;
-        public int ss;
-
-        public void Awake() {
-            this.timer = new System.Timers.Timer(1000);
-            textMesh = gameObject.GetComponentInChildren<TextMesh>();
-            timer.Elapsed += OnTimeEvent;
-            startCounting();
+        
+        private TextMesh _textMesh;
+        private bool _isRunning;
+        public float _elapsedSeconds;
+        
+        public void Start() {
+            _textMesh = gameObject.GetComponentInChildren<TextMesh>();
+            StartTimer();
         }
+        
 
-        private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) {
-            ss += 1;
-            if (ss == 60) {
-                ss = 0;
-                mm += 1;
-            }
-            if (mm == 60) {
-                mm = 0;
-                hh += 1;
-            }
-        }
+        void Update() {
+            if (!_isRunning) return;
 
-        public void Update() {
+            _elapsedSeconds += Time.deltaTime;
+            var timeSpan = TimeSpan.FromSeconds(_elapsedSeconds);
+
             string format = "";
-            if (hh == 0) {
-                 format = string.Format("{0}:{1}", mm.ToString().PadLeft(2, '0'), ss.ToString().PadLeft(2, '0'));
+            if (timeSpan.Hours == 0) {
+                format = string.Format("{0}:{1}", timeSpan.Minutes.ToString().PadLeft(2, '0'), timeSpan.Seconds.ToString().PadLeft(2, '0'));
+            } else {
+                format = string.Format("{0}:{1}:{2}", timeSpan.Hours.ToString().PadLeft(2, '0'), timeSpan.Minutes.ToString().PadLeft(2, '0'), timeSpan.Seconds.ToString().PadLeft(2, '0'));
             }
-            else {
-                format = string.Format("{0}:{1}:{2}", hh.ToString().PadLeft(2, '0'), mm.ToString().PadLeft(2, '0'), ss.ToString().PadLeft(2, '0'));
-            }
 
-            textMesh.text = format;
+            _textMesh.text = format;
         }
 
-        public void setTime(int time) {
-            
+        public void StartTimer() {
+            _isRunning = true;
         }
 
-        public void startCounting() {
-            timer.Start();
+        public void ResetTimer() {
+            _elapsedSeconds = 0;
         }
 
+        public void StopTimer() {
+            _isRunning = false;
+        }
 
     }
 }
