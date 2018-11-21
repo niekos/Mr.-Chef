@@ -20,22 +20,18 @@ namespace Assets.Scripts.Timer {
             material = renderer.material;
         }
         
-
         public override void OnFocusEnter() {
             base.OnFocusEnter();
 
             Debug.Log("Timer is focussed on!");
             material.color = highlightedColor;
-            //textMesh.text = "Focussed";
         }
 
         public override void OnFocusExit() {
             base.OnFocusExit();
 
-            Debug.Log("Timer is exited!");
+            Debug.Log("Timer has been exitted!");
             material.color = primaryColor;
-
-            //textMesh.text = "Idle";
         }
 
         private void onDestroy() {

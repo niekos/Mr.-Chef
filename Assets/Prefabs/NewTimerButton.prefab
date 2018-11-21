@@ -222,7 +222,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1400c6ad1549447a325ec2fbf3e4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDetailScreen: {fileID: 0}
+  HostTransform: {fileID: 0}
+  DistanceScale: 2
+  RotationMode: 0
+  PositionLerpSpeed: 0.2
+  RotationLerpSpeed: 0.2
+  IsDraggingEnabled: 1
+  timerDetailScreen: {fileID: 1924524827626092, guid: fea2d7a13dd89f04ea23d8c28c2df1af,
+    type: 2}
 --- !u!114 &114802920240195732
 MonoBehaviour:
   m_ObjectHideFlags: 1
