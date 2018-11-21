@@ -14,9 +14,9 @@ namespace Assets.Scripts.Timer {
 
         public Color finishedColor = new Color(212, 75, 72);
 
-        private bool isRunning = true;
+        private bool isRunning = false;
         private float elapsedSeconds;
-        private float totalRunningSeconds = 999;
+        public float totalRunningSeconds;
 
         public void Awake() {
             counterText = gameObject.GetComponentInChildren<TextMesh>();
@@ -42,9 +42,6 @@ namespace Assets.Scripts.Timer {
                 format = string.Format("{0}:{1}:{2}", timeSpan.Hours.ToString().PadLeft(2, '0'), timeSpan.Minutes.ToString().PadLeft(2, '0'), timeSpan.Seconds.ToString().PadLeft(2, '0'));
             }
 
-
-            Debug.Log(string.Format("Total seconds to count = {0}", totalRunningSeconds));
-            Debug.Log(string.Format("Total seconds elapsed = {0}", elapsedSeconds));
             counterText.text = format;
         }
 
@@ -68,14 +65,13 @@ namespace Assets.Scripts.Timer {
                 totalSeconds += seconds;
             }
 
-            Debug.Log(string.Format("Total seconds to count = {0}", totalSeconds));
-            Debug.Log(string.Format("Total seconds to count = {0}", totalRunningSeconds));
-            this.totalRunningSeconds = totalSeconds;
+            totalRunningSeconds = totalSeconds;
         }
 
         public void StartTimer() {
-            isRunning = true;
-            Debug.Log("Timer started");
+            if (!timeReached()) {
+                isRunning = true;
+            }
         }
 
         public void ResetTimer() {
@@ -84,6 +80,20 @@ namespace Assets.Scripts.Timer {
 
         public void StopTimer() {
             isRunning = false;
+        }
+
+
+        public void StartStopTimer() {
+            if (isRunning) {
+                StopTimer();
+            }
+            else {
+                StartTimer();
+            }
+        }
+
+        public void DeleteTimer() {
+            Destroy(gameObject.transform.root.gameObject);
         }
 
     }

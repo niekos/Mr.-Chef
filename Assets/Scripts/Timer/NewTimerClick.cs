@@ -78,12 +78,10 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
     }
 
     public void CreateNewTimer() {
-        Instantiate(timer, new Vector3(0, 0, -10), Quaternion.identity)
-            .transform.Rotate(-90, 0, 0);
-        Counter counter = timer.GetComponent<Counter>();
-
-        counter.setTimer(hours, minutes, seconds);
-        counter.StartTimer();
+        GameObject timerClone = Instantiate(timer, new Vector3(0, 0, -10), Quaternion.identity);
+        timerClone.transform.Rotate(-90, 0, 0);
+        timerClone.GetComponent<Counter>().setTimer(hours, minutes, seconds);
+        timerClone.GetComponent<Counter>().StartTimer();
 
         Destroy(gameObject.transform.root.gameObject);
     }

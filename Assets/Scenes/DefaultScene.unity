@@ -160,58 +160,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a611e772ef8ddf64d8106a9cbb70f31c, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &561603450
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488522422827456, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114667158524752614, guid: fea2d7a13dd89f04ea23d8c28c2df1af,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: increaseSeconds
-      objectReference: {fileID: 0}
-    - target: {fileID: 114667158524752614, guid: fea2d7a13dd89f04ea23d8c28c2df1af,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fea2d7a13dd89f04ea23d8c28c2df1af, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &796851315
 GameObject:
   m_ObjectHideFlags: 0
