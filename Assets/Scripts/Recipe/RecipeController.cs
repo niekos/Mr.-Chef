@@ -6,12 +6,13 @@ using UnityEngine;
 public class RecipeController : HandDraggable, IInputClickHandler
 {
     public Recipe Recipe { get; set; }
+    public RecipeInstruction RecipeInstruction { get; set; }
 
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        var recipeInstructionView = GameObject.Find("RecipeInstructions");
-        var recipeInstructionController = recipeInstructionView.GetComponent<RecipeInstruction>();
-        recipeInstructionController.UpdateInstructions(Recipe.Steps);
+        var recipeInstructionView = GameObject.Find("RecipeInstruction");
+        //var recipeInstructionController = recipeInstructionView.GetComponent<RecipeInstruction>();
+        //recipeInstructionController.UpdateInstructions(Recipe.Steps);
         recipeInstructionView.SetActive(true);
 
         Destroy(transform.parent.parent.gameObject);
@@ -31,14 +32,14 @@ public class RecipeController : HandDraggable, IInputClickHandler
         base.OnFocusEnter();
 
 
-        GetChildComponent("RecipeBackground").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Recipe/RecipeSelectedBackground.mat");
+        GetChildComponent("RecipeBackground").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Recipe/RecipeSelectedBackground");
     }
 
     public override void OnFocusExit()
     {
         base.OnFocusExit();
 
-        GetChildComponent("RecipeBackground").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Recipe/RecipeBackground.mat");
+        GetChildComponent("RecipeBackground").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Recipe/RecipeBackground");
     }
 
     private Transform GetChildComponent(string name)

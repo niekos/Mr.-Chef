@@ -11,13 +11,13 @@ public class OnBoardProcess : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        var voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
+        //var voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
 
-        voiceRecognizer.RegisterKeyword("menu");
+        //voiceRecognizer.RegisterKeyword("menu");
 
-        voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
+        //voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
 
-        GetChildComponent("Guidance").gameObject.SetActive(false);
+        //GetChildComponent("Guidance").gameObject.SetActive(false);
         Instantiate(RecipeMenuPrefab).SetActive(true);
     }
 	
@@ -28,7 +28,7 @@ public class OnBoardProcess : MonoBehaviour {
 
     private void VoiceHandler(PhraseRecognizedEventArgs args)
     {
-        if (args.text == "menu")
+        /*if (args.text == "menu")
         {
             if (!_menuOpen)
             {
@@ -37,8 +37,7 @@ public class OnBoardProcess : MonoBehaviour {
 
                 Debug.Log("Menu openen");
             }
-        }
-        
+        }*/
     }
 
     private Transform GetChildComponent(string name)

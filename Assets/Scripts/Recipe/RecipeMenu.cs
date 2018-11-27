@@ -10,7 +10,7 @@ public class RecipeMenu : MonoBehaviour {
         HideCookingObjects();
 
         //Test code
-        List<string> tostiInstructions = new List<string> { "Check ingredients", "Spread butter on your bread", "Scrape the cheese", "Put cheese and ham on top of the butter",
+        List<string> tostiInstructions = new List<string> { "Check ingredients", "Spread butter on your bread", "Scrape the cheese", "Put cheese and ham \non top of the butter",
         "Place the bread in the sandwich iron", "Wait 6 minutes and you are done"};
         List<string> boerenkoolInstructions = new List<string> { "step1", "step2" };
 

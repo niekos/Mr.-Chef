@@ -14,8 +14,7 @@ public class OpenTimerDetail : HandDraggable, IInputClickHandler {
 
     public override void OnFocusEnter() {
         base.OnFocusEnter();
-
-        CreateNewTimerDetailPanel();
+        
     }
 
     public void CreateNewTimerDetailPanel() {

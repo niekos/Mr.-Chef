@@ -16,7 +16,8 @@ public class RecipeInstruction : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         //test code
-        UpdateInstructions(new List<string>() { "Check ingredients",  "Cut carrot", "Stop the bleeding", "Use thuisbezorgd"});
+        UpdateInstructions(new List<string>() { "Check ingredients", "Spread butter on your bread", "Scrape the cheese", "Put cheese and ham on top of the butter",
+        "Place the bread in the sandwich iron", "Wait 6 minutes and you are done"});
         //end test code
 
         _voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
@@ -78,7 +79,7 @@ public class RecipeInstruction : MonoBehaviour {
         int index = 0;
         foreach (string instruction in _instructionList)
         {
-            Vector3 stepPosition = new Vector3(transform.localPosition.x - 5.21f, transform.localPosition.y + (4.1f - (2f * index)), transform.localPosition.z - 0.02f);
+            Vector3 stepPosition = new Vector3(transform.localPosition.x - 7.71f, transform.localPosition.y + (6.0f - (2f * index)), transform.localPosition.z - 0.02f);
             var stepInstance = Instantiate(Step, stepPosition, Quaternion.identity);
             _steps.Add(stepInstance);
             stepInstance.SetActive(true);

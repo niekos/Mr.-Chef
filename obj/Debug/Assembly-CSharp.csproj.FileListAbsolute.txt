@@ -225,3 +225,6 @@ C:\Users\Fatah Fattah\Desktop\Mr.-Chef\Temp\bin\Debug\UnityEngine.ClusterRendere
 C:\Users\Fatah Fattah\Desktop\Mr.-Chef\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Fatah Fattah\Desktop\Mr.-Chef\obj\Debug\Assembly-CSharp.dll
 C:\Users\Fatah Fattah\Desktop\Mr.-Chef\obj\Debug\Assembly-CSharp.pdb
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\GLTFSerialization.dll
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\GLTFSerialization.pdb

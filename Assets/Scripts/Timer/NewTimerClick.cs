@@ -9,7 +9,7 @@ using HoloToolkit.Unity.Buttons;
 public class NewTimerClick : MonoBehaviour, IInputClickHandler {
     
     public GameObject timer = null;
-    private TextMesh timerText = null;
+    private TextMesh timerText;
 
     public int hours = 0;
     public int minutes = 0;
@@ -74,7 +74,7 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
     }
 
     public void OnInputClicked(InputClickedEventData eventData) {
-        CreateNewTimer();
+
     }
 
     public void CreateNewTimer() {
