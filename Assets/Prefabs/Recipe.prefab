@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4696033561316662}
-  - component: {fileID: 114682699927812378}
+  - component: {fileID: 114231087394828688}
   m_Layer: 0
   m_Name: Recipe
   m_TagString: Untagged
@@ -303,7 +303,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
---- !u!114 &114682699927812378
+--- !u!114 &114231087394828688
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,8 +315,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 0}
-  DistanceScale: 100
+  DistanceScale: 2
   RotationMode: 0
   PositionLerpSpeed: 0.2
   RotationLerpSpeed: 0.2
   IsDraggingEnabled: 1
+  RecipeInstructionPrefab: {fileID: 114286682334916976, guid: ad82a58abe52bec428b040f28f5f5531,
+    type: 2}
+  OnboardProcess: {fileID: 114607489626982914, guid: cb25a3a84e3f42e4ba535cfb1fdaa68c,
+    type: 2}

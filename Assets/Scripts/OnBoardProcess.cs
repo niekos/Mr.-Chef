@@ -4,40 +4,66 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 
 public class OnBoardProcess : MonoBehaviour {
+    public static OnBoardProcess Instance;
+
     public GameObject RecipeMenuPrefab;
+    public GameObject GuidancePrefab;
     public GameObject VoiceRecognizerPrefab;
 
-    private bool _menuOpen = false;
+    public bool MenuOpen { get; set; }
 
-    // Use this for initialization
-    void Start () {
-        //var voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
 
-        //voiceRecognizer.RegisterKeyword("menu");
+        var voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
+        voiceRecognizer.RegisterKeyword("menu");
+        voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
 
-        //voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
+        DontDestroyOnLoad(gameObject);
 
-        //GetChildComponent("Guidance").gameObject.SetActive(false);
         Instantiate(RecipeMenuPrefab).SetActive(true);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
     private void VoiceHandler(PhraseRecognizedEventArgs args)
     {
-        /*if (args.text == "menu")
+        if (args.text == "menu")
         {
-            if (!_menuOpen)
+            if (!MenuOpen)
             {
-                GetChildComponent("Guidance").gameObject.SetActive(false);
-                Instantiate(RecipeMenuPrefab).SetActive(true);
+                MenuOpen = true;
 
-                Debug.Log("Menu openen");
+                // Destroy cooking elements
+                DestroyObjectsInLayer(9);
+
+                Instantiate(RecipeMenuPrefab).SetActive(true);
             }
-        }*/
+        }
+    }
+
+    public void DestroyObjectsInLayer(int layer)
+    {
+        var objects = FindObjectsOfType(typeof(GameObject));
+        for (var i = 0; i < objects.Length; i++)
+        {
+            var gameObj = (GameObject)objects[i];
+            if (gameObj.layer == layer)
+            {
+                Destroy(gameObj);
+            }
+        }
     }
 
     private Transform GetChildComponent(string name)

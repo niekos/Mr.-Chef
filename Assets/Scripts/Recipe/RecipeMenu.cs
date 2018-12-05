@@ -7,12 +7,10 @@ public class RecipeMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        HideCookingObjects();
-
         //Test code
         List<string> tostiInstructions = new List<string> { "Check ingredients", "Spread butter on your bread", "Scrape the cheese", "Put cheese and ham \non top of the butter",
         "Place the bread in the sandwich iron", "Wait 6 minutes and you are done"};
-        List<string> boerenkoolInstructions = new List<string> { "step1", "step2" };
+        List<string> boerenkoolInstructions = new List<string> { "Doe eerst de aardappelen in de pan, daarna de boerenkool en de worst", "Kook tot de aardappelen gaar zijn", "Prak die shit", "Serveer met sju" };
 
         List<Recipe> recipes = new List<Recipe>();
         recipes.Add(new Recipe("Tosti", Resources.Load<Texture2D>("Images/Recipes/Tosti"), "Een tosti is een lekker broodje met kaas en ham.", tostiInstructions));
@@ -26,18 +24,7 @@ public class RecipeMenu : MonoBehaviour {
 		
 	}
 
-    private void HideCookingObjects()
-    {
-        var objects = FindObjectsOfType(typeof(GameObject));
-        for (var i = 0; i < objects.Length; i++)
-        {
-            var gameObj = (GameObject)objects[i];
-            if (gameObj.layer == 9)
-            {
-                gameObj.SetActive(false);
-            }
-        }
-    }
+    
 
     private void LoadRecipes(List<Recipe> recipes)
     {
@@ -68,12 +55,13 @@ public class RecipeMenu : MonoBehaviour {
                 }
             }
             
-            
             recipeInstance.GetComponent<RecipeController>().Recipe = recipe;
             recipeInstance.SetActive(true);
 
             index++;
         }
+
+        
     }
 }
 

@@ -20,18 +20,46 @@ public class RecipeInstruction : MonoBehaviour {
         "Place the bread in the sandwich iron", "Wait 6 minutes and you are done"});
         //end test code
 
-        _voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
+        //_voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
 
-        _voiceRecognizer.RegisterKeyword("next");
-        _voiceRecognizer.RegisterKeyword("previous");
-        
-        _voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
+        //_voiceRecognizer.RegisterKeyword("next");
+        //_voiceRecognizer.RegisterKeyword("previous");
+
+        //_voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
+
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (_instructionList.Count - 1 > _currentIndex)
+            {
+                _currentIndex++;
+                UpdateCheck(true);
+
+                if (_currentIndex > 0)
+                {
+                    AnimateMovement(true);
+
+                }
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (_currentIndex >= 0)
+            {
+                UpdateCheck(false);
+                _currentIndex--;
+
+                if (_currentIndex > -1)
+                {
+                    AnimateMovement(false);
+                }
+            }
+        }
+    }
 
     private void VoiceHandler(PhraseRecognizedEventArgs args)
     {
@@ -41,6 +69,11 @@ public class RecipeInstruction : MonoBehaviour {
             {
                 _currentIndex++;
                 UpdateCheck(true);
+
+                if (_currentIndex > 0)
+                {
+                    AnimateMovement(true);
+                }
             }
         }
         else if(args.text == "previous")
@@ -49,10 +82,33 @@ public class RecipeInstruction : MonoBehaviour {
             {
                 UpdateCheck(false);
                 _currentIndex--;
+
+                if (_currentIndex > 0)
+                {
+                    AnimateMovement(false);
+                }
             }
         }
 
         Debug.Log("current index: " + _currentIndex);
+    }
+
+    private void AnimateMovement(bool forward)
+    {
+        var animController = GameObject.Find("StepByStepContent").GetComponent<Animator>();
+        var controller = GameObject.Find("StepByStepContent").GetComponent<LoopSamePosition>();
+        if (forward)
+        {
+            //animController.Play("StepForward");
+
+            //GameObject.Find("Scrollbar Vertical").GetComponent<Scrollbar>().value -= 1f;
+            controller.transform.parent.localPosition = new Vector3(controller.transform.parent.localPosition.x, controller.transform.parent.localPosition.y + 31, controller.transform.parent.localPosition.z);
+        }
+        else
+        {
+            //GameObject.Find("Scrollbar Vertical").GetComponent<Scrollbar>().value += 0.1f;
+            controller.transform.parent.localPosition = new Vector3(controller.transform.parent.localPosition.x, controller.transform.parent.localPosition.y - 31, controller.transform.parent.localPosition.z);
+        }
     }
 
     private void UpdateCheck(bool active)
@@ -79,24 +135,25 @@ public class RecipeInstruction : MonoBehaviour {
         int index = 0;
         foreach (string instruction in _instructionList)
         {
-            Vector3 stepPosition = new Vector3(transform.localPosition.x - 7.71f, transform.localPosition.y + (6.0f - (2f * index)), transform.localPosition.z - 0.02f);
+            Vector3 stepPosition = new Vector3(transform.localPosition.x - 8.8f, transform.localPosition.y + (-3f - (1.25f * index)), transform.localPosition.z - 0.1f);
             var stepInstance = Instantiate(Step, stepPosition, Quaternion.identity);
             _steps.Add(stepInstance);
             stepInstance.SetActive(true);
+            
+            var instructionPanel = GameObject.Find("StepByStepContent");
+            stepInstance.transform.parent = instructionPanel.transform;
 
-            foreach (Transform child in stepInstance.transform)
+            
+            foreach (Transform innerChild in instructionPanel.transform.GetChild(index))
             {
-                if (child.transform.name == "StepText")
+                if (innerChild.transform.name == "StepText")
                 {
-                    var component = child.GetComponent<Renderer>().gameObject.GetComponent<TextMesh>();
+                    var component = innerChild.GetComponent<Text>();
                     component.text = instruction;
                     component.gameObject.SetActive(true);
                 }
             }
-
-            //stepInstance.GetComponentInChildren<TextMesh>().text = instruction;
-            stepInstance.transform.parent = this.transform;
-
+            
             index++;
         }
     }

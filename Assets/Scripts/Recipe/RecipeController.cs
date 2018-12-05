@@ -6,16 +6,19 @@ using UnityEngine;
 public class RecipeController : HandDraggable, IInputClickHandler
 {
     public Recipe Recipe { get; set; }
-    public RecipeInstruction RecipeInstruction { get; set; }
+    public RecipeInstruction RecipeInstructionPrefab;
+    public OnBoardProcess OnboardProcess;
 
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        var recipeInstructionView = GameObject.Find("RecipeInstruction");
-        //var recipeInstructionController = recipeInstructionView.GetComponent<RecipeInstruction>();
-        //recipeInstructionController.UpdateInstructions(Recipe.Steps);
-        recipeInstructionView.SetActive(true);
+        var recipeInstruction = Instantiate(RecipeInstructionPrefab);
+        recipeInstruction.UpdateInstructions(Recipe.Steps);
+        recipeInstruction.gameObject.SetActive(true);
 
-        Destroy(transform.parent.parent.gameObject);
+        // Close menu
+        var onboardProcess = Instantiate(OnboardProcess);
+        onboardProcess.MenuOpen = false;
+        onboardProcess.DestroyObjectsInLayer(10);
     }
 
     // Use this for initialization
@@ -30,8 +33,7 @@ public class RecipeController : HandDraggable, IInputClickHandler
     public override void OnFocusEnter()
     {
         base.OnFocusEnter();
-
-
+        
         GetChildComponent("RecipeBackground").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Recipe/RecipeSelectedBackground");
     }
 

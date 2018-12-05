@@ -11,11 +11,7 @@ public class StepText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        this.transform.parent.parent.localScale = this.transform.localScale;
 	}
-
-    public void SetText(string text)
-    {
-        
-    }
+    
 }

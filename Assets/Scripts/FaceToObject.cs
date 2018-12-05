@@ -11,8 +11,9 @@ public class FaceToObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var destinationTransform = GameObject.Find("MixedRealityCamera").GetComponent<Transform>();
+        var destinationTransform = Camera.main.transform;
 
-        this.GetComponent<GameObject>().transform.LookAt(destinationTransform);
-	}
+        transform.LookAt(destinationTransform);
+        transform.Rotate(-90, 180, 0);
+    }
 }
