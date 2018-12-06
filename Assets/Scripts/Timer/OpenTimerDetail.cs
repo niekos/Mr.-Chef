@@ -1,4 +1,4 @@
-﻿using HoloToolkit.Unity.InputModule;
+using HoloToolkit.Unity.InputModule;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +18,8 @@ public class OpenTimerDetail : HandDraggable, IInputClickHandler {
     }
 
     public void CreateNewTimerDetailPanel() {
-
-        Instantiate(timerDetailScreen, new Vector3(0, 0, 10), Quaternion.identity)
-            .transform.Rotate(-90, 0, 0);
+        Vector3 pos = gameObject.transform.position;
+        GameObject timerDetailScreenClone = Instantiate(timerDetailScreen, new Vector3(pos.x, pos.y, pos.z - 1), Quaternion.identity);
+        timerDetailScreenClone.transform.Rotate(-90, 0, 0);
     }
 }
