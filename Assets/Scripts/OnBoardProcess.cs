@@ -4,51 +4,58 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 
 public class OnBoardProcess : MonoBehaviour {
-    public static OnBoardProcess Instance;
-
     public GameObject RecipeMenuPrefab;
+    public GameObject TimerMenuPrefab;
     public GameObject GuidancePrefab;
     public GameObject VoiceRecognizerPrefab;
 
     public bool MenuOpen { get; set; }
+    public bool Cooking { get; set; }
+
+    private VoiceRecognizer _voiceRecognizer;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        Instantiate(GuidancePrefab).SetActive(true);
 
-        var voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
-        voiceRecognizer.RegisterKeyword("menu");
-        voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
+        _voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
+        _voiceRecognizer.RegisterKeyword("menu");
+        _voiceRecognizer.RegisterKeyword("set timer");
 
-        DontDestroyOnLoad(gameObject);
+        _voiceRecognizer.OnDictionaryReset += RegisterVoiceEvent;
+        RegisterVoiceEvent();
+    }
 
-        Instantiate(RecipeMenuPrefab).SetActive(true);
+    private void RegisterVoiceEvent()
+    {
+        _voiceRecognizer.KeywordRecognizer.OnPhraseRecognized += VoiceHandler;
     }
 
     // Update is called once per frame
     void Update () {
-		
 	}
 
-    private void VoiceHandler(PhraseRecognizedEventArgs args)
+    private void VoiceHandler(PhraseRecognizedEventArgs pArgs)
     {
-        if (args.text == "menu")
+        Debug.Log("Jooo ik hoor wat denk ik!!! : " + pArgs.text);
+        if (pArgs.text == "menu")
         {
             if (!MenuOpen)
             {
                 MenuOpen = true;
+                Cooking = false;
 
-                // Destroy cooking elements
+                // Destroy all cooking elements
                 DestroyObjectsInLayer(9);
 
                 Instantiate(RecipeMenuPrefab).SetActive(true);
+            }
+        }
+        if(pArgs.text == "set timer")
+        {
+            if (Cooking)
+            {
+                var timerMenu = Instantiate(TimerMenuPrefab);
             }
         }
     }
