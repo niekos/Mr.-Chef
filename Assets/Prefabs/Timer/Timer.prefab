@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716e16bc24877704abd7ce24c42ea700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Correction: 1
 --- !u!114 &114225280458339458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -781,7 +782,7 @@ MonoBehaviour:
   RotationMode: 0
   PositionLerpSpeed: 0.2
   RotationLerpSpeed: 0.2
-  IsDraggingEnabled: 0
+  IsDraggingEnabled: 1
   primaryColor: {r: 0.59607846, g: 0.8156863, b: 0.83137256, a: 1}
   highlightedColor: {r: 0.11764706, g: 0.8156863, b: 0.83137256, a: 1}
 --- !u!114 &114908478225191066

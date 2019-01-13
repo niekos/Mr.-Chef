@@ -43,7 +43,6 @@ public class RecipeMenu : MonoBehaviour {
             //recipeInstance.transform.position = RecipePrefab.transform.position;
             //recipeInstance.transform.localScale = RecipePrefab.transform.localScale;
             //recipeInstance.transform.localRotation = RecipePrefab.transform.localRotation;
-            var thistransform = transform;
             //recipeInstance.transform.position = recipePosition;
             recipeInstance.GetComponentInChildren<TextMesh>().text = recipe.Title;
 

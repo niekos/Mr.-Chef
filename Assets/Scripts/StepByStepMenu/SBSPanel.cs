@@ -8,11 +8,13 @@ public class SBSPanel : MonoBehaviour {
 
     public GameObject StepPrefab;
     public int CurrentIndex { get; set; }
+    private int CurrentCheckIndex { get; set; }
 
     private List<GameObject> _steps = new List<GameObject>();
-    private Vector3 _outsidePositionMargin = new Vector3(0, 12, 0);
+    private Vector3 _outsidePositionMargin = new Vector3(0, 8, 0);
     private Vector3 _startPositionMargin = new Vector3(0, -4, 0);
     private const float STEPHEIGHT = 1.2f;
+    private const float STEPSPEED = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -24,14 +26,27 @@ public class SBSPanel : MonoBehaviour {
         
 	}
 
-    public void Check()
+    public int Check()
     {
-        _steps[CurrentIndex].transform.GetChild(1).gameObject.SetActive(true);
+        if (CurrentCheckIndex < _steps.Count)
+        {
+            _steps[CurrentCheckIndex].transform.GetChild(1).gameObject.SetActive(true);
+            CurrentCheckIndex++;
+        }
+
+        return (int)(((float)CurrentCheckIndex / _steps.Count) * 100.0f);
     }
 
-    public void UndoCheck()
+    public int UndoCheck()
     {
-        _steps[CurrentIndex].transform.GetChild(1).gameObject.SetActive(false);
+        if (CurrentCheckIndex > 0)
+        {
+            CurrentCheckIndex--;
+            _steps[CurrentCheckIndex].transform.GetChild(1).gameObject.SetActive(false);
+           
+        }
+
+        return (int)(((float)CurrentCheckIndex / _steps.Count) * 100.0f);
     }
 
     private Vector3 GetStartPosition()
@@ -50,7 +65,7 @@ public class SBSPanel : MonoBehaviour {
             step.GetComponentInChildren<Text>().text = instruction;
 
             var moveObject = step.GetComponent<MoveObject>();
-            moveObject.SetSpeed(5);
+            moveObject.SetSpeed(STEPSPEED);
 
             // Set parent
             step.transform.parent = transform;
@@ -61,9 +76,9 @@ public class SBSPanel : MonoBehaviour {
         }
     }
 
-    public int Forward()
+    public void Forward()
     {
-        if (CurrentIndex < _steps.Count)
+        if (CurrentIndex < _steps.Count - 1)
         {
             MoveObject moveControl;
 
@@ -93,11 +108,9 @@ public class SBSPanel : MonoBehaviour {
 
             CurrentIndex++;
         }
-        
-        return (int)(((float)CurrentIndex / _steps.Count) * 100.0f);
     }
 
-    public int Backward()
+    public void Backward()
     {
         if (CurrentIndex > 0)
         {
@@ -128,7 +141,5 @@ public class SBSPanel : MonoBehaviour {
                 loopIndex++;
             }
         }
-
-        return (int)(((float)CurrentIndex / _steps.Count) * 100.0f);
     }
 }

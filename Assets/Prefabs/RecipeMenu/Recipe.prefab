@@ -320,5 +320,5 @@ MonoBehaviour:
   PositionLerpSpeed: 0.2
   RotationLerpSpeed: 0.2
   IsDraggingEnabled: 1
-  RecipeInstructionPrefab: {fileID: 114430821558392310, guid: a2f2ecdf492f66f449c128d5c4d7bfd9,
+  RecipeInstructionPrefab: {fileID: 114185545184523234, guid: a2f2ecdf492f66f449c128d5c4d7bfd9,
     type: 2}

@@ -8,19 +8,26 @@ public class OnBoardProcess : MonoBehaviour {
     public GameObject TimerMenuPrefab;
     public GameObject GuidancePrefab;
     public GameObject VoiceRecognizerPrefab;
+    public GameObject CursorPrefab;
 
     public bool MenuOpen { get; set; }
+    public bool TimerOpen { get; set; }
     public bool Cooking { get; set; }
 
     private VoiceRecognizer _voiceRecognizer;
 
     private void Awake()
     {
-        Instantiate(GuidancePrefab).SetActive(true);
+        var cursor = Instantiate(CursorPrefab);
+        cursor.transform.parent = Camera.main.transform;
+
+        var guidance = Instantiate(GuidancePrefab);
+        guidance.transform.parent = Camera.main.transform;
 
         _voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
         _voiceRecognizer.RegisterKeyword("menu");
         _voiceRecognizer.RegisterKeyword("set timer");
+        _voiceRecognizer.RegisterKeyword("add timer");
 
         _voiceRecognizer.OnDictionaryReset += RegisterVoiceEvent;
         RegisterVoiceEvent();
@@ -51,11 +58,12 @@ public class OnBoardProcess : MonoBehaviour {
                 Instantiate(RecipeMenuPrefab).SetActive(true);
             }
         }
-        if(pArgs.text == "set timer")
+        if(pArgs.text == "set timer" && pArgs.text == "add timer")
         {
-            if (Cooking)
+            if (Cooking && !TimerOpen)
             {
                 var timerMenu = Instantiate(TimerMenuPrefab);
+                TimerOpen = true;
             }
         }
     }

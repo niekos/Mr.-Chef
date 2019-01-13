@@ -84,6 +84,8 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
         timerClone.GetComponent<Counter>().StartTimer();
 
         Destroy(gameObject.transform.root.gameObject);
+
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().TimerOpen = false;
     }
 
     public void CancelTimerCreation() {

@@ -15,12 +15,12 @@ public class RecipeController : HandDraggable, IInputClickHandler
         recipeInstruction.gameObject.SetActive(true);
 
         // Close menu
-        var onboardProcess = GameObject.Find("OnboardProcess").GetComponent<OnBoardProcess>();
-        onboardProcess.MenuOpen = false;
-        onboardProcess.DestroyObjectsInLayer(10);
+        var OnBoardProcess = GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>();
+        OnBoardProcess.MenuOpen = false;
+        OnBoardProcess.DestroyObjectsInLayer(10);
 
         // Set cooking state true
-        onboardProcess.Cooking = true;
+        OnBoardProcess.Cooking = true;
     }
 
     // Use this for initialization
