@@ -24,7 +24,7 @@ public class SBSPanel : MonoBehaviour {
 	void Start () {
         Guide = Instantiate(GuidePrefab).GetComponent<Guidance>();
         Guide.transform.parent = Camera.main.transform;
-        Guide.SetInstruction("Click on or say next/previous to navigate over the instructions");
+        Guide.SetInstruction("Click on the arrows or say next/previous to navigate over the instructions");
     }
 	
 	// Update is called once per frame

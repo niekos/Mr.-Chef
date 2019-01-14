@@ -16,9 +16,12 @@ public class OnBoardProcess : MonoBehaviour {
 
     private Guidance _guidance;
     private VoiceRecognizer _voiceRecognizer;
+    public bool VoiceOn { get; set; }
 
     private void Awake()
     {
+        VoiceOn = true;
+
         var cursor = Instantiate(CursorPrefab);
         cursor.transform.parent = Camera.main.transform;
 
@@ -52,52 +55,84 @@ public class OnBoardProcess : MonoBehaviour {
         }
     }
 
-    private void MenuHandler()
+    public void MenuHandler()
     {
         if (!MenuOpen)
         {
             MenuOpen = true;
             Cooking = false;
+            TimerOpen = false;
 
             // Destroy all cooking elements
             DestroyObjectsInLayer(9);
 
-            // Destroy guidance
-            if(_guidance != null) {
-                _guidance.GetComponent<Guidance>().CloseInstruction();
-            }
+            // Close all guidance to prevent overlaps
+            DestroyAllGuidance();
 
             Instantiate(RecipeMenuPrefab).SetActive(true);
         }
     }
     
-    private void TimerHandler()
+    public void TimerHandler()
     {
         if (Cooking && !TimerOpen)
         {
             // Close step by step guidance
-            var guid = GameObject.Find("InstructionPanel").GetComponent<SBSPanel>().Guide;
-            if(guid != null)
-            {
-                guid.CloseInstruction();
-            }
+            DestroyAllGuidance();
 
             // Create timer menu
             var timerMenu = Instantiate(TimerMenuPrefab);
             TimerOpen = true;
+
+            // Timer guidance
+            _guidance = Instantiate(GuidancePrefab).GetComponent<Guidance>();
+            _guidance.transform.parent = Camera.main.transform;
+            _guidance.SetInstruction("Click on the + numbers to increase the time in minutes");
         }
+    }
+
+    private void CreateGuide(Sprite sprite, AnimatorOverrideController controller)
+    {
+        _guidance = Instantiate(GuidancePrefab).GetComponent<Guidance>();
+        _guidance.transform.parent = Camera.main.transform;
+
+        if (sprite != null)
+        {
+            _guidance.SetSprite(sprite);
+        }
+        if (controller != null)
+        {
+            _guidance.SetAnimationController(controller);
+        }
+    }
+
+    public void CreateGuide(string text, Sprite sprite, AnimatorOverrideController controller)
+    {
+        CreateGuide(sprite, controller);
+
+        _guidance.SetInstruction(text);
+    }
+
+    public void CreateGuide(string text, Sprite sprite, AnimatorOverrideController controller, float duration)
+    {
+        CreateGuide(sprite, controller);
+
+        _guidance.SetInstruction(text, duration);
     }
 
     private void VoiceHandler(PhraseRecognizedEventArgs pArgs)
     {
-        Debug.Log("Jooo ik hoor wat denk ik!!! : " + pArgs.text);
-        if (pArgs.text == "menu")
+        if (VoiceOn)
         {
-            MenuHandler();
-        }
-        if(pArgs.text == "set timer" || pArgs.text == "add timer")
-        {
-            TimerHandler();
+            Debug.Log("Jooo ik hoor wat denk ik!!! : " + pArgs.text);
+            if (pArgs.text == "menu")
+            {
+                MenuHandler();
+            }
+            if (pArgs.text == "set timer" || pArgs.text == "add timer")
+            {
+                TimerHandler();
+            }
         }
     }
 
@@ -110,6 +145,20 @@ public class OnBoardProcess : MonoBehaviour {
             if (gameObj.layer == layer)
             {
                 Destroy(gameObj);
+            }
+        }
+    }
+
+    public void DestroyAllGuidance()
+    {
+        var objects = FindObjectsOfType(typeof(GameObject));
+        for (var i = 0; i < objects.Length; i++)
+        {
+            var gameObj = (GameObject)objects[i];
+            if (gameObj.layer == 11)
+            {
+                Guidance guide = gameObj.GetComponent<Guidance>();
+                guide.CloseInstruction();
             }
         }
     }

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class ControlMenuButton : HandDraggable, IInputClickHandler
 {
-    public Material MenuButtonSelected;
-    public Material MenuButtonNotSelected;
-
     public delegate void OnClickFunc();
     public event OnClickFunc OnClick;
 
@@ -37,9 +34,12 @@ public class ControlMenuButton : HandDraggable, IInputClickHandler
         //GetComponentInChildren<Image>().color = Color.white;
         transform.GetChild(0).GetComponentInChildren<Image>().color = Color.black;
     }
-
-    public void OnInputClicked(InputClickedEventData eventData)
+    
+    public virtual void OnInputClicked(InputClickedEventData eventData)
     {
-        OnClick();
+        if(OnClick != null)
+        {
+            OnClick();
+        }
     }
 }

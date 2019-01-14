@@ -21,6 +21,10 @@ public class SBSCanvas : MonoBehaviour {
         //"Place the bread in the sandwich iron", "Wait 6 minutes and you are done"});
         //end test code
 
+        // Register buttons
+        transform.Find("BtnNextFrame").GetComponent<ControlMenuButton>().OnClick += StepForward;
+        transform.Find("BtnPreviousFrame").GetComponent<ControlMenuButton>().OnClick += StepBackward;
+
         _voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
         _voiceRecognizer.RegisterKeyword("next");
         _voiceRecognizer.RegisterKeyword("previous");
@@ -46,9 +50,19 @@ public class SBSCanvas : MonoBehaviour {
         }
     }
 
+    private void StepForward()
+    {
+        StepHandler("next");
+    }
+
+    private void StepBackward()
+    {
+        StepHandler("previous");
+    }
+
     private void StepHandler(string command)
     {
-        if (command == "next" || command == "volgende")
+        if (command == "next")
         {
             var sbsPanel = GetComponentInChildren<SBSPanel>();
             
@@ -63,7 +77,7 @@ public class SBSCanvas : MonoBehaviour {
 
             GameObject.Find("ProgressBarPanel").GetComponent<ProgressBar>().SetPercent(sbsPanel.Check());
         }
-        else if (command == "previous" || command == "terug")
+        else if (command == "previous")
         {
             var sbsPanel = GetComponentInChildren<SBSPanel>();
 
@@ -79,7 +93,12 @@ public class SBSCanvas : MonoBehaviour {
 
     private void VoiceHandler(PhraseRecognizedEventArgs pArgs)
     {
-        StepHandler(pArgs.text);
+        var voice = GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().VoiceOn;
+
+        if (voice)
+        {
+            StepHandler(pArgs.text);
+        }
     }
     
     public void UpdateInstructions(List<string> instructionList)

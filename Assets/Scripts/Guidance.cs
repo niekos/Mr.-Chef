@@ -13,6 +13,9 @@ public class Guidance : MonoBehaviour {
     private MoveObject _moveControl;
     private bool _onScreen = false;
 
+    private float _stayAlive = 0;
+    private float _startTime;
+
     // Use this for initialization
     void Awake () {
         // Animation control
@@ -25,7 +28,14 @@ public class Guidance : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(_stayAlive > 0)
+        {
+            if ((_startTime + _stayAlive) < Time.time)
+            {
+                CloseInstruction();
+                _stayAlive = 0;
+            }
+        }
 	}
 
     public void SetSprite(Sprite guideSprite)
@@ -41,12 +51,32 @@ public class Guidance : MonoBehaviour {
         }
     }
 
+    public void SetAnimationController(AnimatorOverrideController controller)
+    {
+        foreach (Transform child in transform.GetChild(0).transform)
+        {
+            if (child.name == "GuidanceImage")
+            {
+                var animator = child.GetComponent<Animator>();
+                animator.runtimeAnimatorController = controller;
+            }
+        }
+    }
+
     public void SetInstruction(string instruction)
     {
         // Set instruction text
         GetComponentInChildren<Text>().text = instruction;
 
         ShowGuide();
+    }
+
+    public void SetInstruction(string instruction, float duration)
+    {
+        _startTime = Time.time;
+        _stayAlive = duration;
+
+        SetInstruction(instruction);
     }
 
     private void ShowGuide()

@@ -127,8 +127,8 @@ MonoBehaviour:
   HostTransform: {fileID: 0}
   DistanceScale: 2
   RotationMode: 0
-  PositionLerpSpeed: 0.2
-  RotationLerpSpeed: 0.2
+  PositionLerpSpeed: 1
+  RotationLerpSpeed: 1
   IsDraggingEnabled: 1
 --- !u!114 &114976371431878642
 MonoBehaviour:
@@ -143,6 +143,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecipePrefab: {fileID: 1461295823889008, guid: 205e1a242807d604db13b42b5398841a,
     type: 2}
-  GuidancePrefab: {fileID: 1868799465699546, guid: f9060d26d5440a24ba10f42c79a26ff8,
+  GuidancePrefab: {fileID: 1251915981595692, guid: f9060d26d5440a24ba10f42c79a26ff8,
     type: 2}
   GuidanceImage: {fileID: 21300000, guid: 24a687d5e6a307040b14cea2e70b8090, type: 3}

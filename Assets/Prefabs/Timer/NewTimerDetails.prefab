@@ -1009,6 +1009,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85d34accc20739439468b38da3adde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimationController: {fileID: 22100000, guid: fc9ffd373c29f4d41a736361d833f6d2,
+    type: 2}
+  GuidanceImage: {fileID: 21300000, guid: 24a687d5e6a307040b14cea2e70b8090, type: 3}
   timer: {fileID: 1118839243872600, guid: a07878dcef809e3498bb943118d80efb, type: 2}
   hours: 0
   minutes: 0
@@ -1264,8 +1267,8 @@ MonoBehaviour:
   HostTransform: {fileID: 0}
   DistanceScale: 2
   RotationMode: 0
-  PositionLerpSpeed: 0.2
-  RotationLerpSpeed: 0.2
+  PositionLerpSpeed: 1
+  RotationLerpSpeed: 1
   IsDraggingEnabled: 1
 --- !u!114 &114586522695204788
 MonoBehaviour:
@@ -1643,6 +1646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85d34accc20739439468b38da3adde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimationController: {fileID: 0}
+  GuidanceImage: {fileID: 0}
   timer: {fileID: 0}
   hours: 0
   minutes: 0

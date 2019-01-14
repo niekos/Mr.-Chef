@@ -18,6 +18,7 @@ namespace Assets.Scripts.Timer {
         public float totalRunningSeconds;
 
         public void Awake() {
+            totalRunningSeconds = 10;
             counterText = gameObject.GetComponentInChildren<TextMesh>();
             renderer = gameObject.GetComponent<Renderer>();
         }
@@ -25,6 +26,12 @@ namespace Assets.Scripts.Timer {
 
         void Update() {
             if (timeReached()) {
+                var audio = GetComponent<AudioSource>();
+                if(!audio.isPlaying)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+                
                 isRunning = false;
                 renderer.material.color = finishedColor;
             }
@@ -96,6 +103,7 @@ namespace Assets.Scripts.Timer {
         }
 
         public void DeleteTimer() {
+            GetComponent<AudioSource>().Stop();
             Destroy(gameObject.transform.root.gameObject);
         }
 

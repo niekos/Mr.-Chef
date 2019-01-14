@@ -7,6 +7,9 @@ using Assets.Scripts.Timer;
 using HoloToolkit.Unity.Buttons;
 
 public class NewTimerClick : MonoBehaviour, IInputClickHandler {
+
+    public AnimatorOverrideController AnimationController;
+    public Sprite GuidanceImage;
     
     public GameObject timer = null;
     private TextMesh timerText;
@@ -15,7 +18,7 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
     public int minutes = 0;
     public int seconds = 0;
 
-    public void Start() { 
+    public void Start() {
         foreach(Transform child in transform)
         {
             if(child.name == "TimeCanvas")
@@ -91,12 +94,18 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
         timerClone.GetComponent<Counter>().setTimer(hours, minutes, seconds);
         timerClone.GetComponent<Counter>().StartTimer();
 
+        // Destroy old guide
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().DestroyAllGuidance();
+        // New guide
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().CreateGuide("You can drag and drop nearly every object", GuidanceImage, AnimationController, 10);
+
         Destroy(gameObject.transform.root.gameObject);
     }
 
     public void CancelTimerCreation() {
         GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().TimerOpen = false;
 
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().DestroyAllGuidance();
         Destroy(gameObject.transform.root.gameObject);
     }
 }
