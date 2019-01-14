@@ -24,8 +24,6 @@ public class SBSCanvas : MonoBehaviour {
         _voiceRecognizer = Instantiate(VoiceRecognizerPrefab).GetComponent<VoiceRecognizer>();
         _voiceRecognizer.RegisterKeyword("next");
         _voiceRecognizer.RegisterKeyword("previous");
-        _voiceRecognizer.RegisterKeyword("volgende");
-        _voiceRecognizer.RegisterKeyword("terug");
 
         _voiceRecognizer.OnDictionaryReset += RegisterVoiceEvent;
         RegisterVoiceEvent();

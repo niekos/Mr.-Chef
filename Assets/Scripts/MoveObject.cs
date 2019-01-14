@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveObject : MonoBehaviour {
+    public delegate void OnAnimateFinishedFunc();
+    public event OnAnimateFinishedFunc OnAnimateFinished;
 
     public float Duration { private set; get; }
     public float Speed { private set; get; }
@@ -24,16 +26,17 @@ public class MoveObject : MonoBehaviour {
             transform.localPosition = Vector3.Lerp(transform.localPosition, _endPosition, complete);
 
             // Check if the distance is close enough to be done with animating
-            if(Vector3.Distance(transform.localPosition, _endPosition) == 10)
+            if(Time.time - (_startTime + Duration) > 0)
             {
                 _active = false;
+                OnAnimateFinished();
             }
         }
 	}
 
-    public void SetSpeed(float speed)
+    public void SetOptions(float speed, float duration)
     {
-        Duration = speed;
+        Duration = duration;
         Speed = speed;
     }
 

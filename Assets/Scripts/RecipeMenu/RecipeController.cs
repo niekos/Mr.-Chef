@@ -14,6 +14,9 @@ public class RecipeController : HandDraggable, IInputClickHandler
         recipeInstruction.UpdateInstructions(Recipe.Steps);
         recipeInstruction.gameObject.SetActive(true);
 
+        // Close guide
+        transform.parent.GetComponent<RecipeMenu>().Guide.CloseInstruction();
+
         // Close menu
         var OnBoardProcess = GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>();
         OnBoardProcess.MenuOpen = false;

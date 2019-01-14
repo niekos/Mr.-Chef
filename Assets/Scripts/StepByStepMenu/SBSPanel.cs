@@ -15,10 +15,16 @@ public class SBSPanel : MonoBehaviour {
     private Vector3 _startPositionMargin = new Vector3(0, -4, 0);
     private const float STEPHEIGHT = 1.2f;
     private const float STEPSPEED = 1;
+    private const float ANIMDURATION = 1.0f;
+
+    public GameObject GuidePrefab;
+    public Guidance Guide { get; set; }
 
 	// Use this for initialization
 	void Start () {
-        
+        Guide = Instantiate(GuidePrefab).GetComponent<Guidance>();
+        Guide.transform.parent = Camera.main.transform;
+        Guide.SetInstruction("Click on or say next/previous to navigate over the instructions");
     }
 	
 	// Update is called once per frame
@@ -28,6 +34,11 @@ public class SBSPanel : MonoBehaviour {
 
     public int Check()
     {
+        if(Guide != null)
+        {
+            Guide.CloseInstruction();
+        }
+
         if (CurrentCheckIndex < _steps.Count)
         {
             _steps[CurrentCheckIndex].transform.GetChild(1).gameObject.SetActive(true);
@@ -43,7 +54,6 @@ public class SBSPanel : MonoBehaviour {
         {
             CurrentCheckIndex--;
             _steps[CurrentCheckIndex].transform.GetChild(1).gameObject.SetActive(false);
-           
         }
 
         return (int)(((float)CurrentCheckIndex / _steps.Count) * 100.0f);
@@ -65,7 +75,7 @@ public class SBSPanel : MonoBehaviour {
             step.GetComponentInChildren<Text>().text = instruction;
 
             var moveObject = step.GetComponent<MoveObject>();
-            moveObject.SetSpeed(STEPSPEED);
+            moveObject.SetOptions(STEPSPEED, ANIMDURATION);
 
             // Set parent
             step.transform.parent = transform;

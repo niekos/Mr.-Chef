@@ -16,7 +16,13 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
     public int seconds = 0;
 
     public void Start() { 
-        timerText = gameObject.transform.Find("TimeCanvas").GetComponent<TextMesh>();
+        foreach(Transform child in transform)
+        {
+            if(child.name == "TimeCanvas")
+            {
+                timerText = child.GetComponent<TextMesh>();
+            }
+        }
     }
     
     public void increaseHour(int hoursToAdd) {
@@ -78,17 +84,19 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
     }
 
     public void CreateNewTimer() {
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().TimerOpen = false;
+
         GameObject timerClone = Instantiate(timer, new Vector3(0, 0, -10), Quaternion.identity);
         timerClone.transform.Rotate(-90, 0, 0);
         timerClone.GetComponent<Counter>().setTimer(hours, minutes, seconds);
         timerClone.GetComponent<Counter>().StartTimer();
 
         Destroy(gameObject.transform.root.gameObject);
-
-        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().TimerOpen = false;
     }
 
     public void CancelTimerCreation() {
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().TimerOpen = false;
+
         Destroy(gameObject.transform.root.gameObject);
     }
 }

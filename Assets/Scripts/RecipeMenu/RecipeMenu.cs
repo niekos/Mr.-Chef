@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RecipeMenu : MonoBehaviour {
     public GameObject RecipePrefab;
+    public GameObject GuidancePrefab;
+    public Guidance Guide { get; set; }
+    public Sprite GuidanceImage;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +14,11 @@ public class RecipeMenu : MonoBehaviour {
         List<string> tostiInstructions = new List<string> { "Check ingredients", "Turn on the sandwich iron", "Scrape the cheese", "Put cheese and ham on the bread",
         "Wait 6 minutes(say set timer)", "Place the bread in the sandwich iron", "Serve with sauce(optional)"};
         List<string> boerenkoolInstructions = new List<string> { "Doe eerst de aardappelen in de pan, daarna de boerenkool en de worst", "Kook tot de aardappelen gaar zijn", "Prak die shit", "Serveer met sju" };
+
+        Guide = Instantiate(GuidancePrefab).GetComponent<Guidance>();
+        Guide.transform.parent = Camera.main.transform;
+        Guide.SetSprite(GuidanceImage);
+        Guide.SetInstruction("Point the cursor onto a recipe and pinch to select");
 
         List<Recipe> recipes = new List<Recipe>();
         recipes.Add(new Recipe("Tosti", Resources.Load<Texture2D>("Images/Recipes/Tosti"), "Een tosti is een lekker broodje met kaas en ham.", tostiInstructions));

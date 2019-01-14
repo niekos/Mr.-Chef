@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StepPrefab: {fileID: 1431375093661838, guid: 2b534a72511c5db47b1057f2070b27d2, type: 2}
+  GuidePrefab: {fileID: 1868799465699546, guid: f9060d26d5440a24ba10f42c79a26ff8,
+    type: 2}
 --- !u!114 &114389182186462172
 MonoBehaviour:
   m_ObjectHideFlags: 1
