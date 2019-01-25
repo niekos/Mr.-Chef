@@ -7,7 +7,7 @@ public class Guidance : MonoBehaviour {
 
     private Vector3 _outsidePositionMargin = new Vector3(0, -3, 0);
     private Vector3 _startPositionMargin = new Vector3(0, 1.5f, 0);
-    private Vector3 _leftCornerMargin = new Vector3(0, 0, 100);
+    //private Vector3 _leftCornerMargin = new Vector3(0, 0, 100);
     private const float SPEED = 2.0f;
     private const float DURATION = 1.0f;
     private MoveObject _moveControl;

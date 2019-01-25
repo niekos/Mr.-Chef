@@ -97,7 +97,7 @@ public class NewTimerClick : MonoBehaviour, IInputClickHandler {
         // Destroy old guide
         GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().DestroyAllGuidance();
         // New guide
-        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().CreateGuide("You can drag and drop nearly every object", GuidanceImage, AnimationController, 10);
+        GameObject.Find("OnBoardProcess").GetComponent<OnBoardProcess>().CreateGuide("You can drag and drop almost every object", GuidanceImage, AnimationController, 10);
 
         Destroy(gameObject.transform.root.gameObject);
     }

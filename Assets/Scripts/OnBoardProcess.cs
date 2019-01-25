@@ -45,14 +45,14 @@ public class OnBoardProcess : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            MenuHandler();
-        }
-        if(Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            TimerHandler();
-        }
+        //if (Input.GetKeyUp(KeyCode.UpArrow))
+        //{
+        //    MenuHandler();
+        //}
+        //if(Input.GetKeyUp(KeyCode.DownArrow))
+        //{
+        //    TimerHandler();
+        //}
     }
 
     public void MenuHandler()
@@ -124,7 +124,6 @@ public class OnBoardProcess : MonoBehaviour {
     {
         if (VoiceOn)
         {
-            Debug.Log("Jooo ik hoor wat denk ik!!! : " + pArgs.text);
             if (pArgs.text == "menu")
             {
                 MenuHandler();

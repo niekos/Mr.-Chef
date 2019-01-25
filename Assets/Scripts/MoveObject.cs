@@ -13,6 +13,9 @@ public class MoveObject : MonoBehaviour {
     private float _startTime;
     private bool _active = false;
 
+    private float _delayStart = 0;
+    private float _delay = 0;
+
     void Awake()
     {
     }
@@ -21,18 +24,34 @@ public class MoveObject : MonoBehaviour {
         if (_active)
         {
             // The time when the animation is complete
-            float complete = (Time.time - _startTime) / Duration / Speed;
+            float complete = (Time.time - _startTime) / (Duration + _delay) / Speed;
             // Move object
             transform.localPosition = Vector3.Lerp(transform.localPosition, _endPosition, complete);
 
             // Check if the distance is close enough to be done with animating
-            if(Time.time - (_startTime + Duration) > 0)
+            if((_startTime + (Duration + _delay)) - Time.time < 0)
             {
                 _active = false;
-                OnAnimateFinished();
+
+                if (OnAnimateFinished != null)
+                {
+                    OnAnimateFinished();
+                }
             }
         }
-	}
+
+        if (_delayStart > 0)
+        {
+            if ((_delayStart + _delay) < Time.time)
+            {
+                // Set delay off
+                _delayStart = 0;
+                _delay = 0;
+
+                MoveTo(_endPosition);
+            }
+        }
+    }
 
     public void SetOptions(float speed, float duration)
     {
@@ -45,5 +64,19 @@ public class MoveObject : MonoBehaviour {
         _endPosition = endPosition;
         _startTime = Time.time;
         _active = true;
+    }
+
+    public void MoveTo(Vector3 endPosition, float delay)
+    {
+        if (delay > 0)
+        {
+            _delay = delay;
+            _endPosition = endPosition;
+            _delayStart = Time.time;
+        }
+        else
+        {
+            MoveTo(endPosition);
+        }
     }
 }

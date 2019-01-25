@@ -8,11 +8,7 @@ C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\System.Runtime.Serialization
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\System.Xml.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\System.Xml.Linq.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.Locator.dll
-C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
-C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.TextMeshPro.dll
-C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\UnityEditor.dll
-C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\UnityEditor.StandardEvents.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\UnityEngine.AccessibilityModule.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\UnityEngine.AIModule.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\UnityEngine.Analytics.dll
@@ -228,3 +224,7 @@ C:\Users\Fatah Fattah\Desktop\Mr.-Chef\obj\Debug\Assembly-CSharp.pdb
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\GLTFSerialization.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Newtonsoft.Json.dll
 C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\GLTFSerialization.pdb
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.TextMeshPro.dll
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
+C:\Users\s1061550\Documents\Mr. Chef\Temp\bin\Debug\UnityEditor.StandardEvents.dll

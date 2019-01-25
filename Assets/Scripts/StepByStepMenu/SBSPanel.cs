@@ -13,7 +13,7 @@ public class SBSPanel : MonoBehaviour {
     private List<GameObject> _steps = new List<GameObject>();
     private Vector3 _outsidePositionMargin = new Vector3(0, 8, 0);
     private Vector3 _startPositionMargin = new Vector3(0, -4, 0);
-    private const float STEPHEIGHT = 1.2f;
+    private const float STEPHEIGHT = 1.5f;
     private const float STEPSPEED = 1;
     private const float ANIMDURATION = 1.0f;
 
